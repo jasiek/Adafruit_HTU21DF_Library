@@ -15,8 +15,10 @@
  ****************************************************/
 
 #include "Adafruit_HTU21DF.h"
+#ifndef ESP8266
 #if defined(__AVR__)
 #include <util/delay.h>
+#endif
 #endif
 
 Adafruit_HTU21DF::Adafruit_HTU21DF() {
