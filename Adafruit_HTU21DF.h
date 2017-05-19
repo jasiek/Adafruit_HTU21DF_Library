@@ -37,8 +37,8 @@ class Adafruit_HTU21DF {
  public:
   Adafruit_HTU21DF();
   boolean begin(void);
-  float readTemperature(uint16_t);
-  float readHumidity(uint16_t);
+  float readTemperature(uint16_t timeout = 50);
+  float readHumidity(uint16_t timeout = 50);
   void reset(void);
  private:
   boolean readData(void);

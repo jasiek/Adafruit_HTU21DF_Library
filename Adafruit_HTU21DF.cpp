@@ -45,7 +45,7 @@ void Adafruit_HTU21DF::reset(void) {
 }
 
 
-float Adafruit_HTU21DF::readTemperature(uint16_t timeout = 50) {
+float Adafruit_HTU21DF::readTemperature(uint16_t timeout) {
   
   // OK lets ready!
   Wire.beginTransmission(HTU21DF_I2CADDR);
@@ -73,7 +73,7 @@ float Adafruit_HTU21DF::readTemperature(uint16_t timeout = 50) {
 }
   
 
-float Adafruit_HTU21DF::readHumidity(uint16_t timeout = 50) {
+float Adafruit_HTU21DF::readHumidity(uint16_t timeout) {
   // OK lets ready!
   Wire.beginTransmission(HTU21DF_I2CADDR);
   Wire.write(HTU21DF_READHUM);
