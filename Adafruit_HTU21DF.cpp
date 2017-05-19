@@ -45,7 +45,7 @@ void Adafruit_HTU21DF::reset(void) {
 }
 
 
-float Adafruit_HTU21DF::readTemperature(void) {
+float Adafruit_HTU21DF::readTemperature(uint16_t timeout = 50) {
   
   // OK lets ready!
   Wire.beginTransmission(HTU21DF_I2CADDR);
@@ -55,7 +55,8 @@ float Adafruit_HTU21DF::readTemperature(void) {
   delay(50); // add delay between request and actual read!
   
   Wire.requestFrom(HTU21DF_I2CADDR, 3);
-  while (!Wire.available()) {}
+  while (!Wire.available() && timeout--) { delay(1); }
+  if (timeout == 0) return NAN;
 
   uint16_t t = Wire.read();
   t <<= 8;
@@ -72,7 +73,7 @@ float Adafruit_HTU21DF::readTemperature(void) {
 }
   
 
-float Adafruit_HTU21DF::readHumidity(void) {
+float Adafruit_HTU21DF::readHumidity(uint16_t timeout = 50) {
   // OK lets ready!
   Wire.beginTransmission(HTU21DF_I2CADDR);
   Wire.write(HTU21DF_READHUM);
@@ -81,7 +82,8 @@ float Adafruit_HTU21DF::readHumidity(void) {
   delay(50); // add delay between request and actual read!
   
   Wire.requestFrom(HTU21DF_I2CADDR, 3);
-  while (!Wire.available()) {}
+  while (!Wire.available() || timeout--) { delay(1); }
+  if (timeout == 0) return NAN;
 
   uint16_t h = Wire.read();
   h <<= 8;
