@@ -1,3 +1,10 @@
+## Changes in this fork
+
+* Works with ESP8266/Arduino.
+* Configurable timeout value (default = 50ms).
+
+---
+
 This is a library for the HTU21D-F Humidity + Temp sensor
 
 Designed specifically to work with the HTU21D-F in the Adafruit shop 
